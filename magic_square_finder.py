@@ -10,7 +10,7 @@ import sys
 import time
 import argparse
 
-version = "0.1.1"
+version = "0.1.2"
 
 
 class NotASquare(Exception):
@@ -41,6 +41,13 @@ class Square:
     # Skip the last \n when returning
     return res[:-1]
 
+
+def get_row_sums(square):
+  """ Returns the sum of each row in a square. """
+  sums = []
+  for row in square.rows:
+    sums.append(sum(row))
+  return sums
 
 def main():
   """ Main function description """
