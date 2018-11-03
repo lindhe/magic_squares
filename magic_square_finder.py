@@ -4,13 +4,38 @@
 # License: MIT
 # Author: Andreas Lindhé
 
-""" Hunting for a real magic square! """
+""" Hunting for the magic square! """
 
 import sys
 import time
 import argparse
 
-version = "0.0.1"
+version = "0.1.0"
+
+
+class Square:
+  """ Defines an n by n square. """
+
+  def __init__(self, *rows):
+    """ Create a from n lists of length n """
+    # Check that it is a square
+    for row in rows:
+      if len(row) != len(rows):
+        sys.exit("A square must be n by n!")
+    self.rows = [*rows]
+    self.n = len(rows)
+
+  def __repr__(self):
+    """ How to be unambiguous """
+    return str(self.rows)
+
+  def __str__(self):
+    """ How to be pretty """
+    res = ""
+    for row in self.rows:
+      res += (str(row) + "\n")
+    # Skip the last \n when returning
+    return res[:-1]
 
 
 def main():
