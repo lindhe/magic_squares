@@ -27,6 +27,7 @@ class Square:
       if len(row) != len(rows):
         raise NotASquare("A square must be n by n!")
     self.rows = [*rows]
+    self.columns = [list(col) for col in list(zip(*rows))]
     self.n = len(rows)
 
   def __repr__(self):
@@ -47,6 +48,13 @@ def get_row_sums(square):
   sums = []
   for row in square.rows:
     sums.append(sum(row))
+  return sums
+
+def get_col_sums(square):
+  """ Returns the sum of each column in a square. """
+  sums = []
+  for col in square.columns:
+    sums.append(sum(col))
   return sums
 
 def main():
