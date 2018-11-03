@@ -57,6 +57,21 @@ def get_col_sums(square):
     sums.append(sum(col))
   return sums
 
+def get_diagonal_sums(square):
+  """ Returns a tuple of the sum of each diagonal. """
+  topleft = 0
+  bottomleft = 0
+  # Seems like this could be more compact
+  i = 0
+  for row in square.rows:
+    topleft += row[i]
+    i += 1
+  i = 0
+  for col in square.columns:
+    bottomleft += col[i]
+    i += 1
+  return (topleft, bottomleft)
+
 def main():
   """ Main function description """
   return (0)
