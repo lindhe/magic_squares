@@ -10,8 +10,12 @@ import sys
 import time
 import argparse
 
-version = "0.1.0"
+version = "0.1.1"
 
+
+class NotASquare(Exception):
+  def __init__(self, message):
+    super().__init__(message)
 
 class Square:
   """ Defines an n by n square. """
@@ -21,7 +25,7 @@ class Square:
     # Check that it is a square
     for row in rows:
       if len(row) != len(rows):
-        sys.exit("A square must be n by n!")
+        raise NotASquare("A square must be n by n!")
     self.rows = [*rows]
     self.n = len(rows)
 
