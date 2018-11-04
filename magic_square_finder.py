@@ -77,22 +77,28 @@ def get_diagonal_sums(square):
     i += 1
   return (topleft, bottomleft)
 
-def main():
+def main(input_file, parker=False):
   """ Main function description """
-  return (0)
-
+  # Read all non-empty lines from the file
+  if input_file:
+    rows = [line.split() for line in input_file.readlines() if line.strip()]
+  else:
+    rows = [[1, 2], [3, 4]]
+  square = Square(*rows)
+  print(square)
 
 ############################     Bootstrapping     ############################
 if __name__ == '__main__':
   p = argparse.ArgumentParser(description="Finding magic squares...")
   # Add cli arguments
+  p.add_argument('infile', nargs='?', type=argparse.FileType('r'))
   p.add_argument('-P', '--parker', action='store_true',
       help="Do a Parker Square instead!")
   p.add_argument('-V', '--version', action='version', version=version)
   # Run:
   args = p.parse_args()
   try:
-    main()
+    main(input_file=args.infile, parker=args.parker)
   except KeyboardInterrupt:
     sys.exit("\nInterrupted by ^C\n")
 
