@@ -10,6 +10,7 @@ import argparse
 import io
 import sys
 import time
+from itertools import repeat
 from typing import List
 
 version = "0.1.2"
@@ -45,6 +46,11 @@ class Square:
       res += (str(row) + "\n")
     # Skip the last \n when returning
     return res[:-1]
+
+  def squared(self):
+    """ Returns the rows squared """
+    # Stolen from here: https://stackoverflow.com/a/27025330/893211
+    return [list(map(pow, row, repeat(2))) for row in self.rows]
 
 
 #############################     get_row_sums     #############################
