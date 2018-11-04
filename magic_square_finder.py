@@ -6,9 +6,11 @@
 
 """ Hunting for the magic square! """
 
+import argparse
+import io
 import sys
 import time
-import argparse
+from typing import List
 
 version = "0.1.2"
 
@@ -46,7 +48,7 @@ class Square:
 
 
 #############################     get_row_sums     #############################
-def get_row_sums(square):
+def get_row_sums(square: Square) -> List[int]:
   """ Returns the sum of each row in a square. """
   sums = []
   for row in square.rows:
@@ -54,7 +56,7 @@ def get_row_sums(square):
   return sums
 
 #############################     get_col_sums     #############################
-def get_col_sums(square):
+def get_col_sums(square: Square) -> List[int]:
   """ Returns the sum of each column in a square. """
   sums = []
   for col in square.columns:
@@ -62,8 +64,8 @@ def get_col_sums(square):
   return sums
 
 ##########################     get_diagonal_sums     ##########################
-def get_diagonal_sums(square):
-  """ Returns a tuple of the sum of each diagonal. """
+def get_diagonal_sums(square: Square) -> List[int]:
+  """ Returns a list of the sum of each diagonal. """
   topleft = 0
   bottomleft = 0
   # Seems like this could be more compact
@@ -75,15 +77,15 @@ def get_diagonal_sums(square):
   for col in square.columns:
     bottomleft += col[i]
     i += 1
-  return (topleft, bottomleft)
+  return [topleft, bottomleft]
 
 ###########################     CHECK MAGICNESS     ###########################
-def is_magic(square):
+def is_magic(square: Square) -> bool:
   assert type(square) is Square
   all_sums = (
       get_row_sums(square) +
       get_col_sums(square) +
-      list(get_diagonal_sums(square))
+      get_diagonal_sums(square)
       )
   # Check if all elements are equal.
   if all_sums.count(all_sums[0]) == len(all_sums):
@@ -91,7 +93,7 @@ def is_magic(square):
   else:
     return False
 
-def file_to_square(input_file):
+def file_to_square(input_file: io.TextIOWrapper) -> Square:
   if input_file:
     # Read all non-empty lines from the file
     _rows = [line.split() for line in input_file.readlines() if line.strip()]
@@ -102,7 +104,7 @@ def file_to_square(input_file):
     rows = [[1, 2], [3, 4]]
   return Square(*rows)
 
-def main(input_file, parker):
+def main(input_file: io.TextIOWrapper, parker: bool=False):
   """ Reads a square from a file, and runs magic analysis on it... """
   square = file_to_square(input_file)
   print(square)

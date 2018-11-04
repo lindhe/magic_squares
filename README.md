@@ -8,6 +8,14 @@ I made this project mostly to become better at python. My goals are:
 * optionally: try out `virtenv`
 * optionally: find a magic square (of squares??)
 
+## Type checking
+
+Just run `mypy` like so:
+
+```
+mypy magic_square_finder.py
+```
+
 # License
 
 This code is licensed under the MIT license. Details are found in the LICENSE
