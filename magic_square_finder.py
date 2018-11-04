@@ -15,6 +15,8 @@ from typing import List
 
 version = "0.1.2"
 
+Row = List[int]
+Rows = List[Row]
 
 ##############################     NotASquare     ##############################
 class NotASquare(Exception):
@@ -35,11 +37,11 @@ class Square:
     self.columns = [list(col) for col in list(zip(*rows))]
     self.n = len(rows)
 
-  def __repr__(self):
+  def __repr__(self) -> str:
     """ How to be unambiguous """
     return str(self.rows)
 
-  def __str__(self):
+  def __str__(self) -> str:
     """ How to be pretty """
     res = ""
     for row in self.rows:
@@ -47,7 +49,7 @@ class Square:
     # Skip the last \n when returning
     return res[:-1]
 
-  def squared(self):
+  def squared(self) -> Rows:
     """ Returns the rows squared """
     # Stolen from here: https://stackoverflow.com/a/27025330/893211
     return [list(map(pow, row, repeat(2))) for row in self.rows]
