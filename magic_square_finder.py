@@ -99,6 +99,7 @@ def is_magic(square: Square) -> bool:
   else:
     return False
 
+############################     file_to_square     ############################
 def file_to_square(input_file: io.TextIOWrapper) -> Square:
   if input_file:
     # Read all non-empty lines from the file
@@ -110,6 +111,7 @@ def file_to_square(input_file: io.TextIOWrapper) -> Square:
     rows = [[1, 2], [3, 4]]
   return Square(*rows)
 
+#################################     MAIN     #################################
 def main(input_file: io.TextIOWrapper, parker: bool=False):
   """ Reads a square from a file, and runs magic analysis on it... """
   square = file_to_square(input_file)
