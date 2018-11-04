@@ -13,8 +13,6 @@ import time
 from itertools import repeat
 from typing import List
 
-version = "0.1.2"
-
 Row = List[int]
 Rows = List[Row]
 
@@ -130,7 +128,6 @@ if __name__ == '__main__':
   p.add_argument('infile', nargs='?', type=argparse.FileType('r'))
   p.add_argument('-P', '--parker', action='store_true',
       help="Do a Parker Square instead!")
-  p.add_argument('-V', '--version', action='version', version=version)
   # Run:
   args = p.parse_args()
   try:
