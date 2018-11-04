@@ -13,10 +13,12 @@ import argparse
 version = "0.1.2"
 
 
+##############################     NotASquare     ##############################
 class NotASquare(Exception):
   def __init__(self, message):
     super().__init__(message)
 
+################################     Square     ################################
 class Square:
   """ Defines an n by n square. """
 
@@ -43,6 +45,7 @@ class Square:
     return res[:-1]
 
 
+#############################     get_row_sums     #############################
 def get_row_sums(square):
   """ Returns the sum of each row in a square. """
   sums = []
@@ -50,6 +53,7 @@ def get_row_sums(square):
     sums.append(sum(row))
   return sums
 
+#############################     get_col_sums     #############################
 def get_col_sums(square):
   """ Returns the sum of each column in a square. """
   sums = []
@@ -57,6 +61,7 @@ def get_col_sums(square):
     sums.append(sum(col))
   return sums
 
+##########################     get_diagonal_sums     ##########################
 def get_diagonal_sums(square):
   """ Returns a tuple of the sum of each diagonal. """
   topleft = 0
@@ -76,8 +81,9 @@ def main():
   """ Main function description """
   return (0)
 
+
+############################     Bootstrapping     ############################
 if __name__ == '__main__':
-  # Bootstrapping
   p = argparse.ArgumentParser(description="Finding magic squares...")
   # Add cli arguments
   p.add_argument('-P', '--parker', action='store_true',
