@@ -77,15 +77,41 @@ def get_diagonal_sums(square):
     i += 1
   return (topleft, bottomleft)
 
-def main(input_file, parker=False):
-  """ Main function description """
-  # Read all non-empty lines from the file
-  if input_file:
-    rows = [line.split() for line in input_file.readlines() if line.strip()]
+###########################     CHECK MAGICNESS     ###########################
+def is_magic(square):
+  assert type(square) is Square
+  all_sums = (
+      get_row_sums(square) +
+      get_col_sums(square) +
+      list(get_diagonal_sums(square))
+      )
+  # Check if all elements are equal.
+  if all_sums.count(all_sums[0]) == len(all_sums):
+    return True
   else:
+    return False
+
+def file_to_square(input_file):
+  if input_file:
+    # Read all non-empty lines from the file
+    _rows = [line.split() for line in input_file.readlines() if line.strip()]
+    # Stolen from here: https://stackoverflow.com/a/642169/893211
+    rows = [list(map(int, x)) for x in _rows]
+  else:
+    # Some default value...
     rows = [[1, 2], [3, 4]]
-  square = Square(*rows)
+  return Square(*rows)
+
+def main(input_file, parker):
+  """ Reads a square from a file, and runs magic analysis on it... """
+  square = file_to_square(input_file)
   print(square)
+  if is_magic(square):
+    print("Woho! It's a magic square!! 🧙✨")
+    sys.exit(0)
+  else:
+    print("That's a boring square.")
+    sys.exit(2)
 
 ############################     Bootstrapping     ############################
 if __name__ == '__main__':
