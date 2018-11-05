@@ -15,24 +15,26 @@ from typing import List
 
 Row = List[int]
 Rows = List[Row]
+Col = List[int]
+Collumns = List[Col]
 
 ##############################     NotASquare     ##############################
 class NotASquare(Exception):
-  def __init__(self, message):
+  def __init__(self, message: str) -> None:
     super().__init__(message)
 
 ################################     Square     ################################
 class Square:
   """ Defines an n by n square. """
 
-  def __init__(self, *rows):
+  def __init__(self, *rows: Row) -> None:
     """ Create a from n lists of length n """
     # Check that it is a square
     for row in rows:
       if len(row) != len(rows):
         raise NotASquare("A square must be n by n!")
-    self.rows = [*rows]
-    self.columns = [list(col) for col in list(zip(*rows))]
+    self.rows: Rows = [*rows]
+    self.columns: Collumns = [list(col) for col in list(zip(*rows))]
     self.n = len(rows)
 
   def __repr__(self) -> str:
@@ -56,7 +58,7 @@ class Square:
 #############################     get_row_sums     #############################
 def get_row_sums(square: Square) -> List[int]:
   """ Returns the sum of each row in a square. """
-  sums = []
+  sums: List[int] = []
   for row in square.rows:
     sums.append(sum(row))
   return sums
@@ -64,7 +66,7 @@ def get_row_sums(square: Square) -> List[int]:
 #############################     get_col_sums     #############################
 def get_col_sums(square: Square) -> List[int]:
   """ Returns the sum of each column in a square. """
-  sums = []
+  sums: List[int] = []
   for col in square.columns:
     sums.append(sum(col))
   return sums
@@ -105,14 +107,14 @@ def file_to_square(input_file: io.TextIOWrapper) -> Square:
     # Read all non-empty lines from the file
     _rows = [line.split() for line in input_file.readlines() if line.strip()]
     # Stolen from here: https://stackoverflow.com/a/642169/893211
-    rows = [list(map(int, x)) for x in _rows]
+    rows: Rows = [list(map(int, x)) for x in _rows]
   else:
     # Some default value...
     rows = [[1, 2], [3, 4]]
   return Square(*rows)
 
 #################################     MAIN     #################################
-def main(input_file: io.TextIOWrapper, parker: bool=False):
+def main(input_file: io.TextIOWrapper, parker: bool=False) -> None:
   """ Reads a square from a file, and runs magic analysis on it... """
   square = file_to_square(input_file)
   print(square)
