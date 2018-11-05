@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Define printable colors
+RED='\033[0;31m'
+NC='\033[0m'
+
+# Make sure the program type checks
+mypy magic_square_finder.py
+if [ $? -ne 0 ]
+then
+    printf "\n${RED}WARNING!${NC} Did not pass commit gate.\n"
+    printf "Here's your message back:\n\n"
+    cat $1
+    printf "\n"
+    exit 1
+fi

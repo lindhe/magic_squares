@@ -5,6 +5,7 @@ I made this project mostly to become better at python. My goals are:
 * use a generator
 * use type hints and mypy type checking
 * implement profiling
+* deploy a git hook!
 * optionally: try out `virtenv`
 * optionally: find a magic square (of squares??)
 
